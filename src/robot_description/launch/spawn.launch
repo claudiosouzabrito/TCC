@@ -2,7 +2,7 @@
 <launch>
 
     <arg name="x" default="0" />
-    <arg name="y" default="0" />
+    <arg name="y" default="-1" />
     <arg name="z" default="0.02" />
     <arg name="debug" default="false" />
     <arg name="gui" default="true" />

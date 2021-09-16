@@ -58,9 +58,23 @@
                 <!-- todas as paredes -->
                 <model name="wall">
                         <include>
-                                <uri> model://wall</uri>
+                                <uri> model://wall-laser</uri>
                         </include>
                 </model>
+
+                <!-- Todas as colunas -->
+                <model name="columns">
+                        <include>
+                                <uri> model://columns-laser</uri>
+                        </include>
+                </model>
+
+                <!-- porta -->
+                <!-- <model name="door">
+                        <include>
+                                <uri> model://hinged_door</uri>
+                        </include>
+                </model> -->
 
                 <!-- QR code -->
                 <!-- <include>
