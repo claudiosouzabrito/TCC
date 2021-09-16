@@ -34,6 +34,6 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find robot_description)/rviz/novo.rviz"/>
+          args="-d $(find robot_description)/rviz/$(arg slam_methods).rviz"/>
   </group>
 </launch>

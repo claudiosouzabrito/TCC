@@ -8,4 +8,3 @@
 
 # modified environment variables
 export PWD='/home/cloud/ROS/TCC/build'
-export PYTHONPATH="/home/cloud/ROS/TCC/devel/lib/python3/dist-packages:$PYTHONPATH"
