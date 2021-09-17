@@ -26,6 +26,10 @@
                 </physics>
                 <!--}-->
 
+                <GUI name="default_gri" default="0" type="ode">
+                        <grid> 45 1.0 0 0.0150</grid>
+                </GUI>
+
                 <!-- setup shadows {-->
                 <scene>
                         <shadows>true</shadows>
@@ -104,7 +108,7 @@
                 <model name="obj2">
                         <include>
                                 <uri> model://cupboards</uri>
-                                <pose> -2 0 0 0 0 1.5707 </pose>
+                                
                         </include>
                 </model>
 

@@ -580,14 +580,14 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>1.885 0.555 0.47</size>
+                        <size>1.885 0.47 0.555</size>
                     </box>
                 </geometry>
             </collision>
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>1.885 0.555 0.47</size>
+                        <size>1.885 0.47 0.555</size>
                     </box>
                 </geometry>
                 <material>
