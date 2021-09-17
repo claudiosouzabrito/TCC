@@ -69,6 +69,12 @@
                         </include>
                 </model>
 
+                <model name="labBenchs">
+                        <include>
+                                <uri> model://labBench-laser</uri>
+                        </include>
+                </model>
+
                 <!-- porta -->
                 <!-- <model name="door">
                         <include>
@@ -87,198 +93,20 @@
                         <pose>1.600644 -0.565783 0 0 0 0 </pose>
                 </include> -->
 
-                <!--Shelfs-->
-                <!--A1-->
-                <!-- <model name="A1">
+                <!--Armarios-->
+                <model name="obj1">
                         <include>
-                                <uri> model://shelf</uri>
-                                <pose> -2.938241 -2.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--A2-->
-                <!-- <model name="A2">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -1.938241 -2.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--A3-->
-                <!-- <model name="A3">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -0.938241 -2.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
+                                <uri> model://bookshelf</uri>
+                                <pose> 0 5.927 0 0 0 1.5707 </pose>
                         </include>
                 </model>
- -->
-                <!--A4-->
-                <!-- <model name="A4">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 1.061759 -2.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
 
-                <!--A5-->
-                <!-- <model name="A5">
+                <model name="obj2">
                         <include>
-                                <uri> model://shelf</uri>
-                                <pose> 2.061759 -2.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
+                                <uri> model://kitchen_dining</uri>
+                                <pose> -5 0 0 0 0 0 </pose>
                         </include>
-                </model> -->
-
-                <!--A6-->
-                <!-- <model name="A6">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 3.061759 -2.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--B1-->
-                <!-- <model name="B1">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -2.938241 -1.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--B2-->
-                <!-- <model name="B2">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -1.938241 -1.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--B3-->
-                <!-- <model name="B3">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -0.938241 -1.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--B4-->
-                <!-- <model name="B4">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 1.061759 -1.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--B5-->
-                <!-- <model name="B5">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 2.061759 -1.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--B6-->
-                <!-- <model name="B6">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 3.061759 -1.052545 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--C1-->
-                <!-- <model name="C1">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -2.938241 0.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--C2-->
-                <!-- <model name="C2">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -1.938241 0.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--C3-->
-                <!-- <model name="C3">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -0.938241 0.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--C4-->
-                <!-- <model name="C4">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 1.061759 0.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--C5-->
-                <!-- <model name="C5">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 2.061759 0.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--C6-->
-                <!-- <model name="C6">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 3.061759 0.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--D1-->
-                <!-- <model name="D1">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -2.938241 1.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--D2-->
-                <!-- <model name="D2">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -1.938241 1.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--D3-->
-                <!-- <model name="D3">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> -0.938241 1.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--D4-->
-                <!-- <model name="D4">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 1.061759 1.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--D5-->
-                <!-- <model name="D5">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 2.061759 1.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
-
-                <!--D6-->
-                <!-- <model name="D6">
-                        <include>
-                                <uri> model://shelf</uri>
-                                <pose> 3.061759 1.947455 0.009981 0.000074 -0.000016 0.000406 </pose>
-                        </include>
-                </model> -->
+                </model>
 
         </world>
 </sdf>
