@@ -35,14 +35,6 @@
 /home/cloud/ROS/TCC/build/gtest/googletest/CMakeFiles/test.dir
 /home/cloud/ROS/TCC/build/gtest/googletest/CMakeFiles/gtest_main.dir
 /home/cloud/ROS/TCC/build/gtest/googletest/CMakeFiles/gtest.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/install/strip.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/install/local.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/install.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/list_install_components.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/rebuild_cache.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/edit_cache.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/test.dir
-/home/cloud/ROS/TCC/build/cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir
 /home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/install/strip.dir
 /home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/install/local.dir
 /home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/install.dir
@@ -50,6 +42,7 @@
 /home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/rebuild_cache.dir
 /home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/edit_cache.dir
 /home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/test.dir
+/home/cloud/ROS/TCC/build/turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir
 /home/cloud/ROS/TCC/build/turtlebot3_navigation/CMakeFiles/install/strip.dir
 /home/cloud/ROS/TCC/build/turtlebot3_navigation/CMakeFiles/install/local.dir
 /home/cloud/ROS/TCC/build/turtlebot3_navigation/CMakeFiles/install.dir

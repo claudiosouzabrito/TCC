@@ -3,7 +3,7 @@
 # generated from catkin/cmake/template/script.py.in
 # creates a relay to a python script source file, acting as that file.
 # The purpose is that of a symlink
-python_script = '/home/cloud/ROS/TCC/src/cob_simulation-kinetic_dev/cob_gazebo_tools/scripts/remove_object.py'
+python_script = '/home/cloud/ROS/TCC/src/cob_gazebo_tools/scripts/remove_object.py'
 with open(python_script, 'r') as fh:
     context = {
         '__builtins__': __builtins__,

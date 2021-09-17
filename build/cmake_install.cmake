@@ -131,7 +131,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/cloud/ROS/TCC/build/gtest/cmake_install.cmake")
-  include("/home/cloud/ROS/TCC/build/cob_gazebo_objects/cmake_install.cmake")
   include("/home/cloud/ROS/TCC/build/turtlebot3/cmake_install.cmake")
   include("/home/cloud/ROS/TCC/build/turtlebot3_navigation/cmake_install.cmake")
   include("/home/cloud/ROS/TCC/build/turtlebot3_simulations/cmake_install.cmake")

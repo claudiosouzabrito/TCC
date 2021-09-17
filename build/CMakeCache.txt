@@ -775,31 +775,46 @@ ccd_DIR:PATH=ccd_DIR-NOTFOUND
 class_loader_DIR:PATH=/opt/ros/noetic/share/class_loader/cmake
 
 //Value Computed by CMake
-cob_bringup_sim_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_simulation-kinetic_dev/cob_bringup_sim
+cob_bringup_sim_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_bringup_sim
 
 //Value Computed by CMake
-cob_bringup_sim_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_simulation-kinetic_dev/cob_bringup_sim
+cob_bringup_sim_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_bringup_sim
 
 //The directory containing a CMake configuration file for cob_default_env_config.
 cob_default_env_config_DIR:PATH=cob_default_env_config_DIR-NOTFOUND
 
 //Value Computed by CMake
-cob_gazebo_objects_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_simulation-kinetic_dev/cob_gazebo_objects
+cob_gazebo_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_gazebo
 
 //Value Computed by CMake
-cob_gazebo_objects_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_simulation-kinetic_dev/cob_gazebo_objects
+cob_gazebo_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_gazebo
 
 //Value Computed by CMake
-cob_gazebo_tools_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_simulation-kinetic_dev/cob_gazebo_tools
+cob_gazebo_objects_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_gazebo_objects
 
 //Value Computed by CMake
-cob_gazebo_tools_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_simulation-kinetic_dev/cob_gazebo_tools
+cob_gazebo_objects_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_gazebo_objects
 
 //Value Computed by CMake
-cob_simulation_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_simulation-kinetic_dev/cob_simulation
+cob_gazebo_tools_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_gazebo_tools
 
 //Value Computed by CMake
-cob_simulation_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_simulation-kinetic_dev/cob_simulation
+cob_gazebo_tools_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_gazebo_tools
+
+//Value Computed by CMake
+cob_gazebo_worlds_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_gazebo_worlds
+
+//Value Computed by CMake
+cob_gazebo_worlds_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_gazebo_worlds
+
+//Value Computed by CMake
+cob_simulation_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/cob_simulation
+
+//Value Computed by CMake
+cob_simulation_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_simulation
+
+//The directory containing a CMake configuration file for cob_supported_robots.
+cob_supported_robots_DIR:PATH=cob_supported_robots_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
@@ -1317,7 +1332,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1370,7 +1385,7 @@ CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 DART_DEFINITIONS:INTERNAL=
 DART_INCLUDE_DIRS:INTERNAL=/usr/include
-DART_LIBRARIES:INTERNAL=dart;dart;dart;dart;dart
+DART_LIBRARIES:INTERNAL=dart;dart;dart;dart;dart;dart;dart;dart
 //Boost min version requirement
 DART_MIN_BOOST_VERSION:INTERNAL=1.58.0
 DART_dart_DEFINITIONS:INTERNAL=
@@ -1387,7 +1402,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boo
 //Details about finding CURL
 FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcurl.so][/usr/include/x86_64-linux-gnu][c ][v7.68.0()]
 //Details about finding DART
-FIND_PACKAGE_MESSAGE_DETAILS_DART:INTERNAL=[/usr/include][dart;dart;dart;dart;dart][cfound components: dart ][v(6.6)]
+FIND_PACKAGE_MESSAGE_DETAILS_DART:INTERNAL=[/usr/include][dart;dart;dart;dart;dart;dart;dart;dart][cfound components: dart ][v(6.6)]
 //Details about finding DL
 FIND_PACKAGE_MESSAGE_DETAILS_DL:INTERNAL=[true][v()]
 //Details about finding JSONCPP

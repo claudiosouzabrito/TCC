@@ -5,7 +5,6 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
-subdirs("cob_gazebo_objects")
 subdirs("turtlebot3")
 subdirs("turtlebot3_navigation")
 subdirs("turtlebot3_simulations")

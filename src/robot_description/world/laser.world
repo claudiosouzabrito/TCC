@@ -101,12 +101,12 @@
                         </include>
                 </model>
 
-                <!-- <model name="obj2">
+                <model name="obj2">
                         <include>
-                                <uri> model://cabinet</uri>
-                                <pose> 0 5.927 0 0 0 1.5707 </pose>
+                                <uri> model://cupboards</uri>
+                                <pose> -2 0 0 0 0 1.5707 </pose>
                         </include>
-                </model> -->
+                </model>
 
         </world>
 </sdf>
