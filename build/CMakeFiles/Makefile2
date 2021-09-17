@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/cloud/ROS/TCC/build
 
 # The main recursive "all" target.
 all: gtest/all
+all: cob_gazebo_objects/all
 all: turtlebot3/all
 all: turtlebot3_navigation/all
 all: turtlebot3_simulations/all
@@ -70,6 +71,7 @@ all: turtlebot3_description/all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
+preinstall: cob_gazebo_objects/preinstall
 preinstall: turtlebot3/preinstall
 preinstall: turtlebot3_navigation/preinstall
 preinstall: turtlebot3_simulations/preinstall
@@ -91,6 +93,7 @@ clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
+clean: cob_gazebo_objects/clean
 clean: turtlebot3/clean
 clean: turtlebot3_navigation/clean
 clean: turtlebot3_simulations/clean
@@ -104,6 +107,24 @@ clean: turtlebot3_teleop/clean
 clean: turtlebot3_description/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory cob_gazebo_objects
+
+# Recursive "all" directory target.
+cob_gazebo_objects/all:
+
+.PHONY : cob_gazebo_objects/all
+
+# Recursive "preinstall" directory target.
+cob_gazebo_objects/preinstall:
+
+.PHONY : cob_gazebo_objects/preinstall
+
+# Recursive "clean" directory target.
+cob_gazebo_objects/clean: cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/clean
+
+.PHONY : cob_gazebo_objects/clean
 
 #=============================================================================
 # Directory level rules for directory gtest
@@ -226,7 +247,7 @@ turtlebot3/preinstall:
 .PHONY : turtlebot3/preinstall
 
 # Recursive "clean" directory target.
-turtlebot3/clean: turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/clean
+turtlebot3/clean:
 
 .PHONY : turtlebot3/clean
 
@@ -686,31 +707,31 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir
+# Target rules for target cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir
 
 # All Build rule for target.
-turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/all:
-	$(MAKE) -f turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/build.make turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/depend
-	$(MAKE) -f turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/build.make turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/build
+cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/all:
+	$(MAKE) -f cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/build.make cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/depend
+	$(MAKE) -f cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/build.make cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cloud/ROS/TCC/build/CMakeFiles --progress-num= "Built target _catkin_empty_exported_target"
-.PHONY : turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/all
+.PHONY : cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/all
 
 # Build rule for subdir invocation for target.
-turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/rule: cmake_check_build_system
+cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cloud/ROS/TCC/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cloud/ROS/TCC/build/CMakeFiles 0
-.PHONY : turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/rule
+.PHONY : cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/rule
 
 # Convenience name for target.
-_catkin_empty_exported_target: turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/rule
+_catkin_empty_exported_target: cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/rule
 
 .PHONY : _catkin_empty_exported_target
 
 # clean rule for target.
-turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	$(MAKE) -f turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/build.make turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/clean
-.PHONY : turtlebot3/CMakeFiles/_catkin_empty_exported_target.dir/clean
+cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/clean:
+	$(MAKE) -f cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/build.make cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/clean
+.PHONY : cob_gazebo_objects/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 #=============================================================================
 # Target rules for target robot_control/CMakeFiles/std_msgs_generate_messages_py.dir

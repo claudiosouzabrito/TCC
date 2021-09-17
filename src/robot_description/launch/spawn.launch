@@ -2,12 +2,15 @@
 <launch>
 
     <arg name="x" default="0" />
-    <arg name="y" default="-1" />
+    <arg name="y" default="-2" />
     <arg name="z" default="0.02" />
     <arg name="debug" default="false" />
     <arg name="gui" default="true" />
     <arg name="pause" default="false" />
     <arg name="world" default="$(find robot_description)/world/laser.world" />
+    <arg name="object" default="bed"/>
+	<arg name="file_path_urdf" default="$(find cob_gazebo_objects)/objects/$(arg object).urdf"/>
+	<arg name="object_origin" default=""/>
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="use_sim_time" value="true" />
@@ -30,6 +33,13 @@
     sensor_imu:=$(arg set_sensor_imu)
     sensor_camera:=$(arg set_sensor_camera)" />
 
+    <param name="object_description" textfile="$(arg file_path_urdf)" />
+
 
     <node name="my_robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model my_robot -x $(arg x) -y $(arg y) -z $(arg z)"></node>
+
+    
+	<node name="spawn_object_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -param object_description -model $(arg object) ${arg object_origin}" respawn="false" output="screen" />
+
+
 </launch>
