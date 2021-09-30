@@ -7,10 +7,15 @@ project(robot_description)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  nav_msgs
+  visualization_msgs
+  pcl_conversions
+)
+
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+# find_package(Boost REQUIRED COMPONENTS system, nav_msgs, visualization_msgs, pcl_conversions)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -34,13 +39,13 @@ find_package(catkin REQUIRED)
 ##     * add a exec_depend tag for "message_runtime"
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
-##     find_package(catkin REQUIRED COMPONENTS ...)
+##     find_package(catkin REQUIRED COMPONENTS, nav_msgs, visualization_msgs, pcl_conversions)
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
 ##     catkin_package(CATKIN_DEPENDS ...)
 ##   * uncomment the add_*_files sections below as needed
 ##     and list every .msg/.srv/.action file to be processed
 ##   * uncomment the generate_messages entry below
-##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
+##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES, nav_msgs, visualization_msgs)
 
 ## Generate messages in the 'msg' folder
 # add_message_files(
@@ -64,10 +69,12 @@ find_package(catkin REQUIRED)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+#generate_messages(
+#  DEPENDENCIES
+#  nav_msgs
+#  visualization_msgs
+#  std_msgs  # Or other packages containing msgs
+#)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -79,7 +86,7 @@ find_package(catkin REQUIRED)
 ##   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
 ## * In this file (CMakeLists.txt):
 ##   * add "dynamic_reconfigure" to
-##     find_package(catkin REQUIRED COMPONENTS ...)
+##     find_package(catkin REQUIRED COMPONENTS, nav_msgs, visualization_msgs, pcl_conversions)
 ##   * uncomment the "generate_dynamic_reconfigure_options" section below
 ##     and list every .cfg file to be processed
 
@@ -112,8 +119,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
