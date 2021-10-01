@@ -1,4 +1,7 @@
 #include "../include/astar.h"
+#include <iostream>
+#include <list>
+using namespace std;
 
 Astar::Astar(int w, int h){
   width = w;
@@ -28,7 +31,7 @@ Astar::Astar(int w, int h){
 					nodes[y*width + x].neighbours.push_back(&nodes[(y + 0) * width + (x + 1)]);
 
 				// We can also connect diagonally
-				/*if (y>0 && x>0)
+				if (y>0 && x>0)
 					nodes[y*width + x].neighbours.push_back(&nodes[(y - 1) * width + (x - 1)]);
 				if (y<height-1 && x>0)
 					nodes[y*width + x].neighbours.push_back(&nodes[(y + 1) * width + (x - 1)]);
@@ -36,7 +39,7 @@ Astar::Astar(int w, int h){
 					nodes[y*width + x].neighbours.push_back(&nodes[(y - 1) * width + (x + 1)]);
 				if (y<height - 1 && x<width-1)
 					nodes[y*width + x].neighbours.push_back(&nodes[(y + 1) * width + (x + 1)]);
-				*/
+				
 			}
 
 }
@@ -46,3 +49,71 @@ void Astar::setStartnEnd(int x1, int y1, int x2, int y2){
   end = &nodes[y2*width + x2];
 }
 
+void Astar::solveAstar(){
+
+	auto distance = [](Node* a, Node* b) // For convenience
+	{
+		return sqrtf((a->x - b->x)*(a->x - b->x) + (a->y - b->y)*(a->y - b->y));
+	};
+
+	auto heuristic = [distance](Node* a, Node* b) // So we can experiment with heuristic
+	{
+		return distance(a, b);
+	};
+
+	Node *nodeCurrent = start;
+	start->localGoal = 0.0f;
+	start->globalGoal = heuristic(start, end);
+
+	list<Node*> listNotTestedNodes;
+	listNotTestedNodes.push_back(start);
+	
+	while (!listNotTestedNodes.empty() /* && nodeCurrent != end */){
+		listNotTestedNodes.sort([](const Node* lhs, const Node* rhs){ return lhs->globalGoal < rhs->globalGoal; } );
+		// Front of listNotTestedNodes is potentially the lowest distance node. Our
+		// list may also contain nodes that have been visited, so ditch these...
+		while(!listNotTestedNodes.empty() && listNotTestedNodes.front()->visited)
+			listNotTestedNodes.pop_front();
+		// ...or abort because there are no valid nodes left to test
+		if (listNotTestedNodes.empty())
+			break;
+
+		nodeCurrent = listNotTestedNodes.front();
+		nodeCurrent->visited = true; // We only explore a node once
+
+		for (auto nodeNeighbour : nodeCurrent->neighbours){
+			// ... and only if the neighbour is not visited and is 
+			// not an obstacle, add it to NotTested List
+			if (!nodeNeighbour->visited && nodeNeighbour->obstacle == 0)
+				listNotTestedNodes.push_back(nodeNeighbour);
+
+			// Calculate the neighbours potential lowest parent distance
+			float fPossiblyLowerGoal = nodeCurrent->localGoal + distance(nodeCurrent, nodeNeighbour);
+
+			// If choosing to path through this node is a lower distance than what 
+			// the neighbour currently has set, update the neighbour to use this node
+			// as the path source, and set its distance scores as necessary
+			if (fPossiblyLowerGoal < nodeNeighbour->localGoal){
+				nodeNeighbour->parent = nodeCurrent;
+				nodeNeighbour->localGoal = fPossiblyLowerGoal;
+
+				// The best path length to the neighbour being tested has changed, so
+				// update the neighbour's score. The heuristic is used to globally bias
+				// the path algorithm, so it knows if its getting better or worse. At some
+				// point the algo will realise this path is worse and abandon it, and then go
+				// and search along the next best path.
+				nodeNeighbour->globalGoal = nodeNeighbour->localGoal + heuristic(nodeNeighbour, end);
+			}
+		}
+	}
+}
+
+int main(){
+	Astar a = Astar(450, 360);
+
+  cout << a.expor() << endl;
+
+
+  
+	return 0;
+}

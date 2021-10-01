@@ -28,8 +28,9 @@ class Astar{
   public:
     Astar(int w, int h);
     void setStartnEnd(int x1, int y1, int x2, int y2);
+    void solveAstar();
 
-    float expor(){return nodes[0].globalGoal;}
+    float expor(){return nodes[0].visited;}
 
 };
 
