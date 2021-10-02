@@ -81,11 +81,11 @@
                 </model>
 
                 <!-- porta -->
-                <model name="door">
+                <!-- <model name="door">
                         <include>
                                 <uri> model://hinged_door</uri>
                         </include>
-                </model>
+                </model> -->
 
                 <!-- QR code -->
                 <!-- <include>
