@@ -5,9 +5,11 @@
 using namespace cv;
 using namespace std;
 
-Astar::Astar(int w, int h){
-  width = w;
-  height = h;
+Astar::Astar(string pathToMap){
+	Mat image = imread(pathToMap,1); //447 x 220 = 98.340    
+
+  width = image.cols;
+  height = image.rows;
 
   nodes = new Node[width*height];
 
@@ -15,9 +17,20 @@ Astar::Astar(int w, int h){
     for (int y = 0; y < height; y++){
       nodes[y * width + x].x = x; // ...because we give each node its own coordinates
       nodes[y * width + x].y = y;
-      // nodes[y * width + x].obstacle = false;
-      // nodes[y * width + x].parent = nullptr;
-      // nodes[y * width + x].visited = false;
+      nodes[y * width + x].parent = nullptr;
+      nodes[y * width + x].visited = false;
+			if(image.at<Vec3b>(x, y)[0] == 254){
+				nodes[y * width + x].obstacle = false;
+				circle(image, Point(y,x),0, Scalar(0,255,0));
+			}
+			else if(image.at<Vec3b>(x, y)[0] == 205){
+				nodes[y * width + x].obstacle = true;
+				circle(image, Point(y,x),0, Scalar(0,0,255));
+			}
+			else{
+				cout << "ponto " << y << " " << x << endl;
+				circle(image, Point(y,x),0, Scalar(255,0,0));
+			}
     }
 
 		// Create connections - in this case nodes are on a regular grid
@@ -44,6 +57,7 @@ Astar::Astar(int w, int h){
 				
 			}
 
+	imwrite("mappos.png", image);
 }
 
 void Astar::setStartnEnd(int x1, int y1, int x2, int y2){
@@ -111,9 +125,9 @@ void Astar::solveAstar(){
 }
 
 int main(){
-	Astar a = Astar(450, 360);
+	Astar a = Astar("map.png");
 
-  cout << a.expor() << endl;
+  // cout << a.expor() << endl;
 
 
   

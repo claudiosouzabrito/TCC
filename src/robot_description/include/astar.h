@@ -2,6 +2,7 @@
 #define ASTAR_H
 #include <vector>
 #include <math.h>
+#include <string>
 
 using namespace std;
 class Astar{
@@ -26,7 +27,7 @@ class Astar{
 
 
   public:
-    Astar(int w, int h);
+    Astar(string pathToMap);
     void setStartnEnd(int x1, int y1, int x2, int y2);
     void solveAstar();
 
