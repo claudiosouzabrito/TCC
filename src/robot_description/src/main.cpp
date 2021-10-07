@@ -21,14 +21,16 @@ int main(){
       if(diffPixels.find(pixel) == diffPixels.end()){
         diffPixels[pixel] = 1;
       }
-
+      else{
+        diffPixels[pixel]++;
+      }
       
     }
   }
 
   // circle(image, Point(1,110),0, Scalar(0,255,0));
   for(auto it = diffPixels.cbegin(); it != diffPixels.cend(); ++it){
-    cout << it->first << "\n";
+    cout << it->first << ": " << it->second << endl;
   }
   // imshow("mapa", image);
   // waitKey(0);
