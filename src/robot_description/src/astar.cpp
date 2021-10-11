@@ -142,7 +142,7 @@ void Astar::solveAstar(){
 int main(){
 	Astar a = Astar("map.png");
 
-  a.setStartnEnd(90, 395, 180, 25);
+  a.setStartnEnd(90, 395, 110, 25);
 
 	a.solveAstar();
   
