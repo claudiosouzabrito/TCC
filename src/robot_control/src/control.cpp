@@ -58,12 +58,12 @@ void loopControl(vector<int> xref, vector<int> yref, vector<int> Vx, vector<int>
     }
 }
 
-int main(){
+int main(int argc, char** argv){
 
 	vector<int> x_pecorrido;
-  vector<int> y_pecorrido;
+    vector<int> y_pecorrido;
   
-  //ros::init(argc, argv, "control teste");
+    ros::init(argc, argv, "control_teste");
 
 	return 0;
 }

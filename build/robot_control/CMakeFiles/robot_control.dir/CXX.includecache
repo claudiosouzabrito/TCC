@@ -38,10 +38,6 @@ numeric
 ros/ros.h
 -
 
-/home/cloud/ROS/TCC/src/robot_control/src/nmpc.cpp
-../include/nmpc.h
-/home/cloud/ROS/TCC/src/robot_control/include/nmpc.h
-
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string
 -
