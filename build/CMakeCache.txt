@@ -20,6 +20,9 @@ ASSIMP_INCLUDE_DIRS:PATH=/usr/include
 //Path to a library.
 ASSIMP_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libassimp.so
 
+//Whether or not building the CppAD & Ipopt example
+BUILD_EXAMPLE:BOOL=OFF
+
 //Builds the googlemock subproject
 BUILD_GMOCK:BOOL=ON
 
@@ -738,6 +741,12 @@ actionlib_DIR:PATH=/opt/ros/noetic/share/actionlib/cmake
 //The directory containing a CMake configuration file for actionlib_msgs.
 actionlib_msgs_DIR:PATH=/opt/ros/noetic/share/actionlib_msgs/cmake
 
+//The directory containing a CMake configuration file for angles.
+angles_DIR:PATH=/opt/ros/noetic/share/angles/cmake
+
+//The directory containing a CMake configuration file for base_local_planner.
+base_local_planner_DIR:PATH=/opt/ros/noetic/share/base_local_planner/cmake
+
 //The directory containing a CMake configuration file for boost_atomic.
 boost_atomic_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_atomic-1.71.0
 
@@ -816,6 +825,15 @@ cob_simulation_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/cob_simulation
 //The directory containing a CMake configuration file for cob_supported_robots.
 cob_supported_robots_DIR:PATH=cob_supported_robots_DIR-NOTFOUND
 
+//The directory containing a CMake configuration file for control_box_rst.
+control_box_rst_DIR:PATH=/opt/ros/noetic/share/control_box_rst
+
+//The directory containing a CMake configuration file for costmap_2d.
+costmap_2d_DIR:PATH=/opt/ros/noetic/share/costmap_2d/cmake
+
+//The directory containing a CMake configuration file for costmap_converter.
+costmap_converter_DIR:PATH=/opt/ros/noetic/share/costmap_converter/cmake
+
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
@@ -857,6 +875,9 @@ genpy_DIR:PATH=/opt/ros/noetic/share/genpy/cmake
 
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/noetic/share/geometry_msgs/cmake
+
+//Dependencies for the target
+global_planner_lib_LIB_DEPENDS:STATIC=general;ipopt;general;/opt/ros/noetic/lib/libcostmap_2d.so;general;/opt/ros/noetic/lib/liblayers.so;general;/opt/ros/noetic/lib/liblaser_geometry.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libvoxel_grid.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/libtf.so;general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/gtest/googlemock
@@ -925,11 +946,32 @@ ignition-msgs5_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/ignition-msgs5
 //The directory containing a CMake configuration file for ignition-transport8.
 ignition-transport8_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/ignition-transport8
 
+//The directory containing a CMake configuration file for interactive_markers.
+interactive_markers_DIR:PATH=/opt/ros/noetic/share/interactive_markers/cmake
+
 //The directory containing a CMake configuration file for jsoncpp.
 jsoncpp_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/jsoncpp
 
+//The directory containing a CMake configuration file for laser_geometry.
+laser_geometry_DIR:PATH=/opt/ros/noetic/share/laser_geometry/cmake
+
 //Path to a library.
 lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
+
+//The directory containing a CMake configuration file for map_msgs.
+map_msgs_DIR:PATH=/opt/ros/noetic/share/map_msgs/cmake
+
+//The directory containing a CMake configuration file for mbf_abstract_core.
+mbf_abstract_core_DIR:PATH=/opt/ros/noetic/share/mbf_abstract_core/cmake
+
+//The directory containing a CMake configuration file for mbf_costmap_core.
+mbf_costmap_core_DIR:PATH=/opt/ros/noetic/share/mbf_costmap_core/cmake
+
+//The directory containing a CMake configuration file for mbf_msgs.
+mbf_msgs_DIR:PATH=/opt/ros/noetic/share/mbf_msgs/cmake
+
+//The directory containing a CMake configuration file for mbf_utility.
+mbf_utility_DIR:PATH=/opt/ros/noetic/share/mbf_utility/cmake
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/noetic/share/message_filters/cmake
@@ -940,6 +982,54 @@ message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 
+//The directory containing a CMake configuration file for move_base.
+move_base_DIR:PATH=/opt/ros/noetic/share/move_base/cmake
+
+//The directory containing a CMake configuration file for move_base_msgs.
+move_base_msgs_DIR:PATH=/opt/ros/noetic/share/move_base_msgs/cmake
+
+//Value Computed by CMake
+mpc_local_planner_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/mpc_local_planner/mpc_local_planner
+
+//Dependencies for the target
+mpc_local_planner_LIB_DEPENDS:STATIC=general;mpc_local_planner_utils;general;mpc_local_planner_optimal_control;general;corbo_controllers;general;/opt/ros/noetic/lib/libmbf_utility.so;general;/opt/ros/noetic/lib/libteb_local_planner.so;general;/usr/lib/x86_64-linux-gnu/libamd.so;general;/usr/lib/x86_64-linux-gnu/libbtf.so;general;/usr/lib/x86_64-linux-gnu/libcamd.so;general;/usr/lib/x86_64-linux-gnu/libccolamd.so;general;/usr/lib/x86_64-linux-gnu/libcholmod.so;general;/usr/lib/x86_64-linux-gnu/libcolamd.so;general;/usr/lib/x86_64-linux-gnu/libcxsparse.so;general;/usr/lib/x86_64-linux-gnu/libklu.so;general;/usr/lib/x86_64-linux-gnu/libumfpack.so;general;/usr/lib/x86_64-linux-gnu/libspqr.so;general;/opt/ros/noetic/lib/libg2o_csparse_extension.so;general;/opt/ros/noetic/lib/libg2o_core.so;general;/opt/ros/noetic/lib/libg2o_stuff.so;general;/opt/ros/noetic/lib/libg2o_types_slam2d.so;general;/opt/ros/noetic/lib/libg2o_types_slam3d.so;general;/opt/ros/noetic/lib/libg2o_solver_cholmod.so;general;/opt/ros/noetic/lib/libg2o_solver_pcg.so;general;/opt/ros/noetic/lib/libg2o_solver_csparse.so;general;/opt/ros/noetic/lib/libg2o_incremental.so;general;/opt/ros/noetic/lib/libbase_local_planner.so;general;/opt/ros/noetic/lib/libtrajectory_planner_ros.so;general;/opt/ros/noetic/lib/libcostmap_converter.so;general;/opt/ros/noetic/lib/libinteractive_markers.so;general;/opt/ros/noetic/lib/libcostmap_2d.so;general;/opt/ros/noetic/lib/liblayers.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/liblaser_geometry.so;general;/opt/ros/noetic/lib/libtf.so;general;/opt/ros/noetic/lib/libvoxel_grid.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/usr/lib/liborocos-kdl.so;general;/usr/lib/liborocos-kdl.so;general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
+
+//Value Computed by CMake
+mpc_local_planner_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/mpc_local_planner/mpc_local_planner
+
+//Value Computed by CMake
+mpc_local_planner_examples_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/mpc_local_planner/mpc_local_planner_examples
+
+//Value Computed by CMake
+mpc_local_planner_examples_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/mpc_local_planner/mpc_local_planner_examples
+
+//Value Computed by CMake
+mpc_local_planner_msgs_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/mpc_local_planner/mpc_local_planner_msgs
+
+//The directory containing a CMake configuration file for mpc_local_planner_msgs.
+mpc_local_planner_msgs_DIR:PATH=/home/cloud/ROS/TCC/devel/share/mpc_local_planner_msgs/cmake
+
+//Value Computed by CMake
+mpc_local_planner_msgs_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/mpc_local_planner/mpc_local_planner_msgs
+
+//Dependencies for the target
+mpc_local_planner_optimal_control_LIB_DEPENDS:STATIC=general;corbo_optimal_control;
+
+//Dependencies for the target
+mpc_local_planner_utils_LIB_DEPENDS:STATIC=general;corbo_core;general;corbo_systems;
+
+//Value Computed by CMake
+mpc_ros_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/mpc_ros/mpc_ros
+
+//Dependencies for the target
+mpc_ros_LIB_DEPENDS:STATIC=general;ipopt;general;/opt/ros/noetic/lib/libbase_local_planner.so;general;/opt/ros/noetic/lib/libtrajectory_planner_ros.so;general;/opt/ros/noetic/lib/libcostmap_2d.so;general;/opt/ros/noetic/lib/liblayers.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/liblaser_geometry.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libvoxel_grid.so;general;/opt/ros/noetic/lib/libtf.so;general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
+
+//Value Computed by CMake
+mpc_ros_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/mpc_ros/mpc_ros
+
+//The directory containing a CMake configuration file for nav_core.
+nav_core_DIR:PATH=/opt/ros/noetic/share/nav_core/cmake
+
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/noetic/share/nav_msgs/cmake
 
@@ -948,6 +1038,9 @@ octomap_DIR:PATH=/opt/ros/noetic/share/octomap
 
 //Path to a library.
 onelib:FILEPATH=/usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
+
+//The directory containing a CMake configuration file for osqp.
+osqp_DIR:PATH=osqp_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for pcl_conversions.
 pcl_conversions_DIR:PATH=/opt/ros/noetic/share/pcl_conversions/cmake
@@ -1021,6 +1114,9 @@ robot_description_BINARY_DIR:STATIC=/home/cloud/ROS/TCC/build/robot_description
 //Value Computed by CMake
 robot_description_SOURCE_DIR:STATIC=/home/cloud/ROS/TCC/src/robot_description
 
+//The directory containing a CMake configuration file for ros.
+ros_DIR:PATH=ros_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
 
@@ -1066,8 +1162,17 @@ std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake
 //The directory containing a CMake configuration file for std_srvs.
 std_srvs_DIR:PATH=/opt/ros/noetic/share/std_srvs/cmake
 
+//The directory containing a CMake configuration file for teb_local_planner.
+teb_local_planner_DIR:PATH=/opt/ros/noetic/share/teb_local_planner/cmake
+
 //The directory containing a CMake configuration file for tf2.
 tf2_DIR:PATH=/opt/ros/noetic/share/tf2/cmake
+
+//The directory containing a CMake configuration file for tf2_eigen.
+tf2_eigen_DIR:PATH=/opt/ros/noetic/share/tf2_eigen/cmake
+
+//The directory containing a CMake configuration file for tf2_geometry_msgs.
+tf2_geometry_msgs_DIR:PATH=/opt/ros/noetic/share/tf2_geometry_msgs/cmake
 
 //The directory containing a CMake configuration file for tf2_msgs.
 tf2_msgs_DIR:PATH=/opt/ros/noetic/share/tf2_msgs/cmake
@@ -1146,6 +1251,9 @@ urdf_DIR:PATH=/opt/ros/noetic/share/urdf/cmake
 
 //The directory containing a CMake configuration file for visualization_msgs.
 visualization_msgs_DIR:PATH=/opt/ros/noetic/share/visualization_msgs/cmake
+
+//The directory containing a CMake configuration file for voxel_grid.
+voxel_grid_DIR:PATH=/opt/ros/noetic/share/voxel_grid/cmake
 
 //The directory containing a CMake configuration file for xacro.
 xacro_DIR:PATH=/opt/ros/noetic/share/xacro/cmake
@@ -1341,7 +1449,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=18
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1394,7 +1502,7 @@ CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 DART_DEFINITIONS:INTERNAL=
 DART_INCLUDE_DIRS:INTERNAL=/usr/include
-DART_LIBRARIES:INTERNAL=dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart
+DART_LIBRARIES:INTERNAL=dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart
 //Boost min version requirement
 DART_MIN_BOOST_VERSION:INTERNAL=1.58.0
 DART_dart_DEFINITIONS:INTERNAL=
@@ -1411,7 +1519,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boo
 //Details about finding CURL
 FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcurl.so][/usr/include/x86_64-linux-gnu][c ][v7.68.0()]
 //Details about finding DART
-FIND_PACKAGE_MESSAGE_DETAILS_DART:INTERNAL=[/usr/include][dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart][cfound components: dart ][v(6.6)]
+FIND_PACKAGE_MESSAGE_DETAILS_DART:INTERNAL=[/usr/include][dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart;dart][cfound components: dart ][v(6.6)]
 //Details about finding DL
 FIND_PACKAGE_MESSAGE_DETAILS_DL:INTERNAL=[true][v()]
 //Details about finding JSONCPP
