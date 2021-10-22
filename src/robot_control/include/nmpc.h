@@ -36,8 +36,7 @@ class Vout{
 class NMPC{
     private:
         
-        Subscriber ekf_estim;
-        Subscriber Rob_vel;
+        
         
         double DiffAngle(double a1, double a2);
         int mysign(double x);
@@ -49,14 +48,15 @@ class NMPC{
     
     public:
         NodeHandle node_;
-        
+        Subscriber ekf_estim;
+        Subscriber Rob_vel;
 
         NMPC(){
             //subscreve valores do EKF
-            ekf_estim = node_.subscribe("/odom", 1, &NMPC::OdomCallback, this);
+            //ekf_estim = node_.subscribe("/imu", 1, &NMPC::OdomCallback, this);
 
             //subscreve valores de velocidade do robo
-            Rob_vel = node_.subscribe("/odom", 1, &NMPC::VelCallback, this);
+            Rob_vel = node_.subscribe("/odom", 1, &NMPC::OdomCallback, this);
             
             //vision = node_.subscribe("/camera/rgb/image_raw",10, &NMPC::ImageCallback,this);
         }
@@ -67,9 +67,9 @@ class NMPC{
 
         Vout NMPController(MyRobot iRobot, Trajectory Traj);
          
-        void OdomCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg);
+        void OdomCallback(const nav_msgs::Odometry::ConstPtr& vel);
 
-        void VelCallback(const nav_msgs::Odometry::ConstPtr& vel);
+        //void VelCallback(const nav_msgs::Odometry::ConstPtr& vel);
         
         //void ImageCallback(const sensor_msgs::Image img)
         

@@ -182,20 +182,23 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
     return velocity;
 }
 
-void NMPC::OdomCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg){
+// void NMPC::OdomCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg){
 
-    //subscreve valores do EKF
-    iRobot.x_rob =  msg->pose.pose.position.x;
-    iRobot.y_rob =  msg->pose.pose.position.y;
-    iRobot.teta_rob = msg->pose.pose.orientation.z;
-}
+//     //subscreve valores do EKF
+//     iRobot.x_rob =  msg->pose.pose.position.x;
+//     iRobot.y_rob =  msg->pose.pose.position.y;
+//     iRobot.teta_rob = msg->pose.pose.orientation.z;
+// }
 
 
-void NMPC::VelCallback(const nav_msgs::Odometry::ConstPtr& vel){
+void NMPC::OdomCallback(const nav_msgs::Odometry::ConstPtr& vel){
 
     //subscreve valores de velocidade
     iRobot.v_rob = vel->twist.twist.linear.x;
     iRobot.w_rob = vel->twist.twist.angular.z; 
+    iRobot.x_rob =  vel->pose.pose.position.x;
+    iRobot.y_rob =  vel->pose.pose.position.y;
+    iRobot.teta_rob = vel->pose.pose.orientation.z;
 
 }
 

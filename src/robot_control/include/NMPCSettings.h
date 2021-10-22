@@ -26,7 +26,7 @@
 #define CURR_STEP 0.1
 
 //Others
-#define SIM_TIME_STEP 0.01
+#define SIM_TIME_STEP 0.04
 #define BFC 1
 #define DVAL 0
 #define PI 3.14159265

@@ -2,29 +2,32 @@
 #include <math.h>
 #include <numeric>
 #include <ros/ros.h>
+#include <fstream>
 
 using namespace std;
 using namespace ros;
 
-double* CalcTetaVW(double Vx, double aX, double Vy, double aY){
+vector<double> CalcTetaVW(double Vx, double aX, double Vy, double aY){
     //double tetaRef_ = atan(Vy/Vx) * (180/PI);
     double Vref_ = sqrt(pow(Vx, 2)+pow(Vy, 2));
     double Wref_ = ((Vx*aY)-(Vy*aX))/(pow(Vx, 2)+pow(Vy, 2));
 
-    double p[2] = {Vref_, Wref_};
+    vector<double> p = {Vref_, Wref_};
     return p;
 }
 
-void loopControl(vector<int> xref, vector<int> yref, vector<int> Vx, vector<int> Vy, vector<int> aX,
-                  vector<int> aY, vector<int> x_pecorrido, vector<int> y_pecorrido){
+void loopControl(vector<int> xref, vector<int> yref, int* Vx, int* Vy, vector<int> aX, vector<int> aY){
 
     Trajectory traj;
+    traj.v_ref = 0;
+    traj.w_ref = 0;
+    Rate loop_rate(0.8);
+    vector<double> VW;
     NMPC nmpc = NMPC();
     Publisher velPub = nmpc.node_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
-    Rate loop_rate(0.8);
-    double *VW;
 
     for(int i = 0; i < aX.size(); i++) {
+        
         cout << endl;
 
         cout << i << endl;
@@ -41,14 +44,13 @@ void loopControl(vector<int> xref, vector<int> yref, vector<int> Vx, vector<int>
         msg.linear.x = nmpc.velocity.v_out;
         msg.angular.z = nmpc.velocity.w_out;
         
+        
         velPub.publish(msg);
 
         loop_rate.sleep();
 
-        x_pecorrido.push_back(nmpc.iRobot.x_rob);
-        y_pecorrido.push_back(nmpc.iRobot.y_rob);
-
         VW = CalcTetaVW(Vx[i], aX[i], Vy[i], aY[i]);
+
         traj.v_ref = VW[0];
         traj.w_ref = VW[1];
 
@@ -56,6 +58,9 @@ void loopControl(vector<int> xref, vector<int> yref, vector<int> Vx, vector<int>
         // Yref = yref[i] ???
         cout << endl;
     }
+
+
+
 }
 
 int main(int argc, char** argv){
@@ -64,7 +69,51 @@ int main(int argc, char** argv){
     vector<int> y_pecorrido;
   
     ros::init(argc, argv, "control_teste");
+    NodeHandle no; // apagar?
 
+    ifstream file;
+    file.open("src/robot_control/mapas/coords.txt");
+    string n;
+    vector<int> xref;
+    vector<int> yref;
+    int i = 0, num;
+    while(getline(file, n)){
+        if(i == 0){
+            num = atoi(n.c_str());
+        }
+        else if(i <= num){
+            xref.push_back(atoi(n.c_str()));
+        }
+        else{
+            yref.push_back(atoi(n.c_str()));
+        }
+        i++;
+    }
+    // cout << xref.size() << endl << yref.size() << endl;
+
+    int auxVx[num];
+    int auxVy[num];
+    adjacent_difference(xref.begin(), xref.end(), auxVx);
+    adjacent_difference(yref.begin(), yref.end(), auxVy);
+    int Vx[num-1];
+    int Vy[num-1];
+    copy(auxVx + 1, auxVx + num, Vx);
+    copy(auxVy + 1, auxVy + num, Vy);
+    
+    int auxaX[num-1];
+    int auxaY[num-1];
+    adjacent_difference(Vx, Vx + num - 1, auxaX);
+    adjacent_difference(Vy, Vy + num - 1, auxaY);
+    vector<int> aX (auxaX + 1, auxaX + num - 1);
+    vector<int> aY (auxaY + 1, auxaY + num - 1);
+
+    // cout << xref.size() << endl;
+    // cout << Vx[0] << endl;
+    // cout << aX.size() << endl;
+
+    cout << "########## COMECO DA LOCOMOCAO ############" << endl;
+    
+    loopControl(xref, yref, Vx, Vy, aX, aY);
 	return 0;
 }
 
