@@ -177,7 +177,7 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
     velocity.v_out = Ubest(0,0);
     velocity.w_out = Ubest(1,0);
 
-    cout << "v: " << velocity.v_out << ", w: " << velocity.w_out << "\n";
+    //cout << "v: " << velocity.v_out << ", w: " << velocity.w_out << "\n";
 
     return velocity;
 }

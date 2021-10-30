@@ -9,8 +9,7 @@ using namespace cv;
 
 class Astar{
   private:
-    int width;
-    int height;
+    
     Mat image;
 
     struct Node{
@@ -30,6 +29,8 @@ class Astar{
 
 
   public:
+    int width;
+    int height;
     Astar(string pathToMap);
     void setStartnEnd(int x1, int y1, int x2, int y2);
     void solveAstar();

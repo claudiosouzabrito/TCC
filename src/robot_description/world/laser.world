@@ -60,25 +60,25 @@
                 </include>
 
                 <!-- todas as paredes -->
-                <model name="wall">
+                <!-- <model name="wall">
                         <include>
                                 <uri> model://wall-laser</uri>
                         </include>
-                </model>
+                </model> -->
 
                 <!-- Todas as colunas -->
-                <model name="columns">
+                <!-- <model name="columns">
                         <include>
                                 <uri> model://columns-laser</uri>
                         </include>
-                </model>
+                </model> -->
 
                 <!-- Todas as bancadas -->
-                <model name="labBenchs">
+                <!-- <model name="labBenchs">
                         <include>
                                 <uri> model://labBench-laser</uri>
                         </include>
-                </model>
+                </model> -->
 
                 <!-- porta -->
                 <!-- <model name="door">
@@ -99,19 +99,19 @@
                 </include> -->
 
                 <!--Armarios-->
-                <model name="obj1">
+                <!-- <model name="obj1">
                         <include>
                                 <uri> model://bookshelf</uri>
                                 <pose> 0 5.927 0 0 0 1.5707 </pose>
                         </include>
-                </model>
+                </model> -->
 
-                <model name="obj2">
+                <!-- <model name="obj2">
                         <include>
                                 <uri> model://cupboards</uri>
                                 
                         </include>
-                </model>
+                </model> -->
 
                 
 
