@@ -31,7 +31,8 @@
     sensor_imu:=$(arg set_sensor_imu)
     sensor_camera:=$(arg set_sensor_camera)" />
     
-
+    
+    
     <node name="my_robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf 
     -param robot_description -model my_robot -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw)"></node>
     

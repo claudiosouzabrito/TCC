@@ -36,11 +36,8 @@ class Vout{
 class NMPC{
     private:
         
-        
-        
-        double DiffAngle(double a1, double a2);
         int mysign(double x);
-        double CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d& Ut);
+        //double CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d& Ut);
         Matrix<double,2,8> calcUSteps(Matrix2d& Ud);
         Matrix2d saturate(Matrix2d& u);
 
@@ -70,7 +67,9 @@ class NMPC{
         void OdomCallback(const nav_msgs::Odometry::ConstPtr& vel);
 
         //void VelCallback(const nav_msgs::Odometry::ConstPtr& vel);
-        
+        double CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d& Ut);
+        double DiffAngle(double a1, double a2);
+
         //void ImageCallback(const sensor_msgs::Image img)
         
 };

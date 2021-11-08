@@ -13,7 +13,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 *******************************************************************************/
-
+//<param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+//turtlebot3_$(arg model)
 #ifndef FLAT_WORLD_IMU_NODE_H_
 #define FLAT_WORLD_IMU_NODE_H_
 

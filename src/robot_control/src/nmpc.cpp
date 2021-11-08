@@ -1,7 +1,9 @@
 #include "../include/nmpc.h"
-
+#include <math.h>
 
 Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
+
+    
 
     TRobotStateSim simRobot;
     TTargetStateSim simTarget;
@@ -60,11 +62,23 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
     simTarget.vx = Traj.vx_ref;
     simTarget.vy = Traj.vy_ref;
 
+    // cout << "Parametros = iRobot.x_out = " << iRobot.x_rob << endl
+    //     << "\tiRobot.y_out = " << iRobot.y_rob << endl
+    //     << "\tiRobot.teta_out = " << iRobot.teta_rob << endl
+    //     << "\tiRobot.v_out = " << iRobot.v_rob << endl
+    //     << "\tiRobot.w_out = " << iRobot.w_rob << endl
+    //     << "\tTraj.x_ref = " << Traj.x_ref << endl
+    //     << "\tTraj.y_ref = " << Traj.y_ref << endl
+    //     << "\tTraj.vx_ref = " << Traj.vx_ref << endl
+    //     << "\tTraj.vy_ref = " << Traj.vy_ref << endl;
+
     Uref = saturate(Uref);
+    // cout << "Linha 75, Uref = " << Uref << endl;
     
     Jcurrent = CostFunction(simRobot, simTarget, Uref);
 
     Jbest = Jcurrent;
+    // cout << "Linha 81, Jcurrent e Jbest = " << Jcurrent << endl;
 
     //---------------------------------------------------
     //              Optimization loop
@@ -73,6 +87,7 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
         
         //get Usteps matrix
         Usteps = calcUSteps(Uref);
+        // cout << "Linhas 89, Usteps = " << Usteps << endl;
 
         //Calculate Jsteps vector (do one simulation for each input set)
         for (int k=0;k<NU3;k++){
@@ -102,13 +117,16 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
 
                 //Limit wheel speed references in case of motor saturation (update references)
                 Uaux = saturate(Uaux);
+                // cout << "Linha 119, Uaux = " << Uaux << endl;
                     
                 //Do simulation with current Uaux and add to Jsteps vector
                 //Switches between trajectory controller and formation controller
                 J = CostFunction(simRobot, simTarget, Uaux);
+                // cout << "Linhas 124, J = " << J << endl;
 
                 //Add J to Jsteps
                 JSteps(ib+4*k,0) = J;
+                // cout << "Linhas 128, Jsteps = " << JSteps << endl;
             }
         }     
 
@@ -120,6 +138,8 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
             Jgradient_prev(2*i+1,0) = Jgradient(2*i+1,0);
             Jgradient(2*i+1,0) = JSteps(4*i+2,0)-JSteps(4*i+3,0);
         }
+        // cout << "Linha 138, Jgradient_prev = " << Jgradient_prev << endl;
+        // cout << "Linha 139, Jgradient = " << Jgradient << endl;
 
         //Minimization algorithm
         for (int i=0; i<NU3; i++){
@@ -146,6 +166,12 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
                 }
             }
         }
+        // cout << "Linha 148, currGrad = " << currGrad << endl;
+        // cout << "Linha 157, currStep = " << currStep << endl;
+        // cout << "Linha 162, Uref = " << Uref << endl;
+        // cout << "Linha 163, prevGrad = " << prevGrad << endl;
+        // cout << "Linha 165, Jsteps_prev = " << Jsteps_prev << endl;
+        
 
         simRobot.x = iRobot.x_rob;
         simRobot.y = iRobot.y_rob;
@@ -159,9 +185,11 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
         simTarget.vy = Traj.vy_ref;
 
         Uref = saturate(Uref);
+        // cout << "Linha 187, Uref = " << Uref << endl;
 
         //Calculate new current cost (do simulation)
         Jcurrent = CostFunction(simRobot, simTarget, Uref);
+        // cout << "Linha 191, Jcurrent = " << Jcurrent << endl;
 
         //Update JBest
         if (Jcurrent < Jbest){
@@ -169,6 +197,7 @@ Vout NMPC::NMPController(MyRobot iRobot, Trajectory Traj){
             Ubest(0,0) = Uref(0,0);
             Ubest(1,0) = Uref(1,0);
         }
+        // cout << "Linha 198, Ubest = " << Ubest << endl;
 
         iterationCount += 1;
 
@@ -196,9 +225,11 @@ void NMPC::OdomCallback(const nav_msgs::Odometry::ConstPtr& vel){
     //subscreve valores de velocidade
     iRobot.v_rob = vel->twist.twist.linear.x;
     iRobot.w_rob = vel->twist.twist.angular.z; 
-    iRobot.x_rob =  vel->pose.pose.position.x;
-    iRobot.y_rob =  vel->pose.pose.position.y;
-    iRobot.teta_rob = vel->pose.pose.orientation.z;
+    iRobot.x_rob = vel->pose.pose.position.x;
+    iRobot.y_rob = vel->pose.pose.position.y;
+    iRobot.teta_rob = 2*atan2(vel->pose.pose.orientation.z,
+                              vel->pose.pose.orientation.w);
+    
 
 }
 
@@ -210,6 +241,7 @@ double NMPC::CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d
     double RobotTargetDist, RB_x, RB_y, RobotTargetAngle;
     
     sum_cost = 0;
+  
 
     for(int i=NU1; i<=NU2; i++){
 
@@ -240,7 +272,6 @@ double NMPC::CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d
 
             Target.vx = Target.vx*BFC;
             Target.vy = Target.vy*BFC;
-            
         }
 
         RobotTargetDist = sqrt(pow((Target.x - Robot.x),2)+pow((Target.y - Robot.y),2));
@@ -256,6 +287,7 @@ double NMPC::CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d
     }
 
     deltaU = Le3*(fabs(Robot.v-Ut(0,0))+fabs(Robot.w-Ut(1,0)));
+    // cout << "deltaU = " << deltaU << endl;
     res = (sum_cost + deltaU);
 
     return res;
@@ -265,6 +297,7 @@ double NMPC::DiffAngle(double a1, double a2){
     int ang;
 
     ang = a1-a2;
+    // cout << ang << endl;
 
     if (ang<0){
         ang = -((-ang/(2*M_PI))-floor((-ang/(2*M_PI)))*2*M_PI);
@@ -272,6 +305,7 @@ double NMPC::DiffAngle(double a1, double a2){
 
     if (ang<M_PI){
         ang = ang + (2*M_PI);
+        // cout << ang << endl;
     }
     else {
         ang = ((ang/(2*M_PI))-floor((ang/(2*M_PI))))*(2*M_PI);
@@ -279,6 +313,7 @@ double NMPC::DiffAngle(double a1, double a2){
 
     if (ang>M_PI){
         ang = ang - (2*M_PI);
+        // cout << ang << endl;
     }
 
     return ang;

@@ -145,7 +145,7 @@ void Astar::solveAstar(){
 		//arquivo
 		ofstream file;
 		file.open("../mapas/coords1.txt");
-		file << width << endl << height << endl;
+		//file << width << endl << height << endl;
 		file << xs.size() << endl;
 		for(int i = 0; i < xs.size(); i++){
 			file << xs[i] << endl;
@@ -157,15 +157,15 @@ void Astar::solveAstar(){
 	}
 }
 
-// int main(){
+int main(){
 
-// 	Astar a = Astar("../mapas/map.png");
+	Astar a = Astar("../mapas/map.png");
 
-//   a.setStartnEnd(90, 395, 90, 295);  //110 25
+  a.setStartnEnd(90, 395, 170, 395);  //110 25
 
-// 	a.solveAstar();
+	a.solveAstar();
 
-//   //g++ astar.cpp -o astar `pkg-config --cflags --libs opencv4` 
-// 	return 0;
-// }
+  //g++ astar.cpp -o astar `pkg-config --cflags --libs opencv4` 
+	return 0;
+}
 
