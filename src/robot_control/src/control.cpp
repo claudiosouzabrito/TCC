@@ -67,7 +67,7 @@ int main(int argc, char** argv){
     vector<double> y;
 
     //coords1 = linha reta horizontal
-    int num = lerArquivo("src/robot_control/mapas/coords1.txt", &xref, &yref); 
+    int num = lerArquivo("src/robot_control/mapas/coords.txt", &xref, &yref); 
 
     double Vx[xref.size()];
     double Vy[xref.size()];
@@ -93,7 +93,7 @@ int main(int argc, char** argv){
     Trajectory traj;
     traj.v_ref = 0;
     traj.w_ref = 0;
-    Rate loop_rate1(0.8);
+    Rate loop_rate1(2.3);
     vector<double> VW = {0.0, 0.0};
     NMPC nmpc = NMPC();
     Publisher velPub = nmpc.node_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);

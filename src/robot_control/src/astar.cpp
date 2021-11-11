@@ -21,11 +21,12 @@ Astar::Astar(string pathToMap){
       nodes[y * width + x].y = y;
       nodes[y * width + x].parent = nullptr;
       nodes[y * width + x].visited = false;
-			if(image.at<Vec3b>(y, x)[0] == 254){
-				nodes[y * width + x].obstacle = false;
+			if(image.at<Vec3b>(y, x)[0] == 255){
+				nodes[y * width + x].obstacle = true;
+				
 			}
 			else{
-				nodes[y * width + x].obstacle = true;
+				nodes[y * width + x].obstacle = false;
 			}
     }
 	}
@@ -144,7 +145,7 @@ void Astar::solveAstar(){
 
 		//arquivo
 		ofstream file;
-		file.open("../mapas/coords1.txt");
+		file.open("../mapas/coords.txt");
 		//file << width << endl << height << endl;
 		file << xs.size() << endl;
 		for(int i = 0; i < xs.size(); i++){
@@ -159,9 +160,9 @@ void Astar::solveAstar(){
 
 int main(){
 
-	Astar a = Astar("../mapas/map.png");
+	Astar a = Astar("../mapas/map-dilatado.png");
 
-  a.setStartnEnd(90, 395, 170, 395);  //110 25
+  a.setStartnEnd(90, 395, 110, 25);  //110 25
 
 	a.solveAstar();
 
