@@ -60,18 +60,18 @@
                 </include>
 
                 <!-- todas as paredes -->
-                <!-- <model name="wall">
+                <model name="wall">
                         <include>
                                 <uri> model://wall-laser</uri>
                         </include>
-                </model> -->
+                </model>
 
                 <!-- Todas as colunas -->
-                <!-- <model name="columns">
+                <model name="columns">
                         <include>
                                 <uri> model://columns-laser</uri>
                         </include>
-                </model> -->
+                </model>
 
                 <!-- Todas as bancadas -->
                 <model name="labBenchs">
