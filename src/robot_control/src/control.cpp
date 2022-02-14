@@ -44,15 +44,6 @@ int lerArquivo(string path, vector<double> *xref, vector<double> *yref){
     return num;
 }
 
-// double* AD1(vector<double> ref, int num){
-//     double V[num];
-//     adjacent_difference(ref.begin(), ref.end(), V);
-//     V[0] = 0;
-
-//     return V;
-// }
-
-
 int main(int argc, char** argv){
   
     ros::init(argc, argv, "control_teste");
@@ -83,17 +74,12 @@ int main(int argc, char** argv){
     acelX[0] = 0;
     acelY[0] = 0;
 
-    // for( int i = 0; i < xref.size(); i++){
-    //     cout << xref[i] << " " << Vx[i] << " " << acelX[i] << endl;
-    // }
-
-
     cout << "########## COMECO DA LOCOMOCAO ############" << endl;
     
     Trajectory traj;
     traj.v_ref = 0;
     traj.w_ref = 0;
-    Rate loop_rate1(2.3);
+    Rate loop_rate1(2.089);
     vector<double> VW = {0.0, 0.0};
     NMPC nmpc = NMPC();
     Publisher velPub = nmpc.node_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
@@ -133,28 +119,7 @@ int main(int argc, char** argv){
     }
     
 
-    // while(1){
-    //     spinOnce();
-    //     VW = CalcTetaVW(0.05, 0.000001, 0.05, 0.000001);
 
-    //     traj.v_ref = VW[0];
-    //     traj.w_ref = VW[1];
-
-    //     nmpc.velocity = nmpc.NMPController(nmpc.iRobot, traj);
-        
-
-    //     geometry_msgs::Twist msg;
-    //     msg.linear.x = nmpc.velocity.v_out;
-    //     msg.angular.z = nmpc.velocity.w_out;
-
-    //     cout << "Querendo ir para X = " << traj.x_ref << ", Y = " << traj.y_ref << endl;
-    //     cout << "iRobot.x = " << nmpc.iRobot.x_rob << ", iRobot.y = " << nmpc.iRobot.y_rob << endl;
-    //     cout << "velo.linear.x = " << msg.linear.x << ", velo.angular.z = " << msg.angular.z << endl;
-        
-    //     velPub.publish(msg);
-
-    //     loop_rate1.sleep();
-    // }
     
 
 	return 0;
