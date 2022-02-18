@@ -115,7 +115,7 @@ angle_diff(double a, double b)
     return(d2);
 }
 
-static const std::string scan_topic_ = "scan";
+static const std::string scan_topic_ = "my_robot/rplidar/laser/scan";
 
 /* This function is only useful to have the whole code work
  * with old rosbags that have trailing slashes for their frames
@@ -436,7 +436,7 @@ AmclNode::AmclNode() :
   private_nh_.param("update_min_d", d_thresh_, 0.2);
   private_nh_.param("update_min_a", a_thresh_, M_PI/6.0);
   private_nh_.param("odom_frame_id", odom_frame_id_, std::string("odom"));
-  private_nh_.param("base_frame_id", base_frame_id_, std::string("base_link"));
+  private_nh_.param("base_frame_id", base_frame_id_, std::string("carcaca"));
   private_nh_.param("global_frame_id", global_frame_id_, std::string("map"));
   private_nh_.param("resample_interval", resample_interval_, 2);
   private_nh_.param("selective_resampling", selective_resampling_, false);
@@ -673,7 +673,7 @@ void AmclNode::runFromBag(const std::string &in_bag_fn, bool trigger_global_loca
   bag.open(in_bag_fn, rosbag::bagmode::Read);
   std::vector<std::string> topics;
   topics.push_back(std::string("tf"));
-  std::string scan_topic_name = "base_scan"; // TODO determine what topic this actually is from ROS
+  std::string scan_topic_name = "my_robot/rplidar/laser/scan"; // TODO determine what topic this actually is from ROS
   topics.push_back(scan_topic_name);
   rosbag::View view(bag, rosbag::TopicQuery(topics));
 
@@ -1142,7 +1142,7 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
     geometry_msgs::PoseStamped laser_pose;
     try
     {
-      this->tf_->transform(ident, laser_pose, base_frame_id_);
+      this->tf_->transform(ident, laser_pose, "carcaca");
     }
     catch(tf2::TransformException& e)
     {
@@ -1173,7 +1173,7 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
   // Where was the robot when this scan was taken?
   pf_vector_t pose;
   if(!getOdomPose(latest_odom_pose_, pose.v[0], pose.v[1], pose.v[2],
-                  laser_scan->header.stamp, base_frame_id_))
+                  laser_scan->header.stamp, "carcaca"))
   {
     ROS_ERROR("Couldn't determine robot's pose associated with laser scan");
     return;
@@ -1264,8 +1264,8 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
     tf2::convert(q, inc_q.quaternion);
     try
     {
-      tf_->transform(min_q, min_q, base_frame_id_);
-      tf_->transform(inc_q, inc_q, base_frame_id_);
+      tf_->transform(min_q, min_q, "carcaca");
+      tf_->transform(inc_q, inc_q, "carcaca");
     }
     catch(tf2::TransformException& e)
     {
@@ -1453,7 +1453,7 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
                                               0.0));
 
         geometry_msgs::PoseStamped tmp_tf_stamped;
-        tmp_tf_stamped.header.frame_id = base_frame_id_;
+        tmp_tf_stamped.header.frame_id = "carcaca";
         tmp_tf_stamped.header.stamp = laser_scan->header.stamp;
         tf2::toMsg(tmp_tf.inverse(), tmp_tf_stamped.pose);
 
@@ -1549,8 +1549,8 @@ AmclNode::handleInitialPoseMessage(const geometry_msgs::PoseWithCovarianceStampe
   {
     ros::Time now = ros::Time::now();
     // wait a little for the latest tf to become available
-    tx_odom = tf_->lookupTransform(base_frame_id_, msg.header.stamp,
-                                   base_frame_id_, ros::Time::now(),
+    tx_odom = tf_->lookupTransform("carcaca", msg.header.stamp,
+                                   "carcaca", ros::Time::now(),
                                    odom_frame_id_, ros::Duration(0.5));
   }
   catch(tf2::TransformException e)
