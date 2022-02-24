@@ -1338,7 +1338,7 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
     {
       geometry_msgs::PoseArray cloud_msg;
       cloud_msg.header.stamp = ros::Time::now();
-      cloud_msg.header.frame_id = global_frame_id_;
+      cloud_msg.header.frame_id = "carcaca";
       cloud_msg.poses.resize(set->sample_count);
       for(int i=0;i<set->sample_count;i++)
       {
