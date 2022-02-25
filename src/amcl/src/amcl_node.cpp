@@ -478,11 +478,11 @@ AmclNode::AmclNode() :
   nomotion_update_srv_= nh_.advertiseService("request_nomotion_update", &AmclNode::nomotionUpdateCallback, this);
   set_map_srv_= nh_.advertiseService("set_map", &AmclNode::setMapCallback, this);
 
-  laser_scan_sub_ = new message_filters::Subscriber<sensor_msgs::LaserScan>(nh_, scan_topic_, 100);
+  laser_scan_sub_ = new message_filters::Subscriber<sensor_msgs::LaserScan>(nh_, "my_robot/rplidar/laser/scan", 100);
   laser_scan_filter_ = 
           new tf2_ros::MessageFilter<sensor_msgs::LaserScan>(*laser_scan_sub_,
                                                              *tf_,
-                                                             odom_frame_id_,
+                                                             "odom",
                                                              100,
                                                              nh_);
   laser_scan_filter_->registerCallback(boost::bind(&AmclNode::laserReceived,
@@ -657,7 +657,7 @@ void AmclNode::reconfigureCB(AMCLConfig &config, uint32_t level)
   laser_scan_filter_ = 
           new tf2_ros::MessageFilter<sensor_msgs::LaserScan>(*laser_scan_sub_,
                                                              *tf_,
-                                                             odom_frame_id_,
+                                                             "odom",
                                                              100,
                                                              nh_);
   laser_scan_filter_->registerCallback(boost::bind(&AmclNode::laserReceived,
@@ -673,7 +673,7 @@ void AmclNode::runFromBag(const std::string &in_bag_fn, bool trigger_global_loca
   bag.open(in_bag_fn, rosbag::bagmode::Read);
   std::vector<std::string> topics;
   topics.push_back(std::string("tf"));
-  std::string scan_topic_name = "my_robot/rplidar/laser/scan"; // TODO determine what topic this actually is from ROS
+  std::string scan_topic_name = "base_scan"; // TODO determine what topic this actually is from ROS
   topics.push_back(scan_topic_name);
   rosbag::View view(bag, rosbag::TopicQuery(topics));
 
@@ -878,7 +878,7 @@ AmclNode::handleMapMessage(const nav_msgs::OccupancyGrid& msg)
            msg.info.height,
            msg.info.resolution);
   
-  if(msg.header.frame_id != global_frame_id_)
+  if(msg.header.frame_id != "map")
     ROS_WARN("Frame_id of map received:'%s' doesn't match global_frame_id:'%s'. This could cause issues with reading published topics",
              msg.header.frame_id.c_str(),
              global_frame_id_.c_str());
@@ -1026,7 +1026,7 @@ AmclNode::getOdomPose(geometry_msgs::PoseStamped& odom_pose,
   tf2::toMsg(tf2::Transform::getIdentity(), ident.pose);
   try
   {
-    this->tf_->transform(ident, odom_pose, odom_frame_id_);
+    this->tf_->transform(ident, odom_pose, "odom");
   }
   catch(tf2::TransformException e)
   {
@@ -1398,7 +1398,7 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
 
       geometry_msgs::PoseWithCovarianceStamped p;
       // Fill in the header
-      p.header.frame_id = global_frame_id_;
+      p.header.frame_id = "map";
       p.header.stamp = laser_scan->header.stamp;
       // Copy in the pose
       p.pose.pose.position.x = hyps[max_weight_hyp].pf_pose_mean.v[0];
@@ -1457,7 +1457,7 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
         tmp_tf_stamped.header.stamp = laser_scan->header.stamp;
         tf2::toMsg(tmp_tf.inverse(), tmp_tf_stamped.pose);
 
-        this->tf_->transform(tmp_tf_stamped, odom_to_map, odom_frame_id_);
+        this->tf_->transform(tmp_tf_stamped, odom_to_map, "odom");
       }
       catch(tf2::TransformException)
       {
@@ -1475,9 +1475,9 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
         ros::Time transform_expiration = (laser_scan->header.stamp +
                                           transform_tolerance_);
         geometry_msgs::TransformStamped tmp_tf_stamped;
-        tmp_tf_stamped.header.frame_id = global_frame_id_;
+        tmp_tf_stamped.header.frame_id = "map";
         tmp_tf_stamped.header.stamp = transform_expiration;
-        tmp_tf_stamped.child_frame_id = odom_frame_id_;
+        tmp_tf_stamped.child_frame_id = "odom";
         tf2::convert(latest_tf_.inverse(), tmp_tf_stamped.transform);
 
         this->tfb_->sendTransform(tmp_tf_stamped);
@@ -1498,9 +1498,9 @@ AmclNode::laserReceived(const sensor_msgs::LaserScanConstPtr& laser_scan)
       ros::Time transform_expiration = (laser_scan->header.stamp +
                                         transform_tolerance_);
       geometry_msgs::TransformStamped tmp_tf_stamped;
-      tmp_tf_stamped.header.frame_id = global_frame_id_;
+      tmp_tf_stamped.header.frame_id = "map";
       tmp_tf_stamped.header.stamp = transform_expiration;
-      tmp_tf_stamped.child_frame_id = odom_frame_id_;
+      tmp_tf_stamped.child_frame_id = "odom";
       tf2::convert(latest_tf_.inverse(), tmp_tf_stamped.transform);
       this->tfb_->sendTransform(tmp_tf_stamped);
     }
@@ -1534,7 +1534,7 @@ AmclNode::handleInitialPoseMessage(const geometry_msgs::PoseWithCovarianceStampe
     ROS_WARN("Received initial pose with empty frame_id.  You should always supply a frame_id.");
   }
   // We only accept initial pose estimates in the global frame, #5148.
-  else if(stripSlash(msg.header.frame_id) != global_frame_id_)
+  else if(stripSlash(msg.header.frame_id) != "map")
   {
     ROS_WARN("Ignoring initial pose in frame \"%s\"; initial poses must be in the global frame, \"%s\"",
              stripSlash(msg.header.frame_id).c_str(),
@@ -1551,7 +1551,7 @@ AmclNode::handleInitialPoseMessage(const geometry_msgs::PoseWithCovarianceStampe
     // wait a little for the latest tf to become available
     tx_odom = tf_->lookupTransform("carcaca", msg.header.stamp,
                                    "carcaca", ros::Time::now(),
-                                   odom_frame_id_, ros::Duration(0.5));
+                                   "odom", ros::Duration(0.5));
   }
   catch(tf2::TransformException e)
   {
