@@ -17,5 +17,5 @@ img_dilation = cv2.dilate(mapaBinario, kernel, iterations=5)  #numero de vezes q
 
 imgplot = plt.imshow(img_dilation)
 
-cv.imwrite('../mapas/map2.png', img_dilation)
+cv.imwrite('../mapas/map-dilatado.png', img_dilation)
 
