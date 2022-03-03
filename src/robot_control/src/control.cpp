@@ -79,7 +79,7 @@ int main(int argc, char** argv){
     Trajectory traj;
     traj.v_ref = 0;
     traj.w_ref = 0;
-    Rate loop_rate1(2.089);
+    Rate loop_rate1(2.4);
     vector<double> VW = {0.0, 0.0};
     NMPC nmpc = NMPC();
     Publisher velPub = nmpc.node_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
