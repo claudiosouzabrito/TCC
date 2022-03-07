@@ -79,44 +79,54 @@ int main(int argc, char** argv){
     Trajectory traj;
     traj.v_ref = 0;
     traj.w_ref = 0;
-    Rate loop_rate1(2.4);
+    Rate loop_rate1(1.5);
     vector<double> VW = {0.0, 0.0};
     NMPC nmpc = NMPC();
     Publisher velPub = nmpc.node_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 
-    for(int i = 0; i < xref.size(); i++) {
+    while(ros::ok){
         spinOnce();
-        cout << endl;
-
-        cout << i << endl;
-        traj.x_ref = xref[i];
-        traj.y_ref = yref[i];
-        traj.vx_ref = Vx[i];
-        traj.vy_ref = Vy[i];
-
-        VW = CalcTetaVW(Vx[i], acelX[i], Vy[i], acelY[i]);
-
-        traj.v_ref = VW[0];
-        traj.w_ref = VW[1];
-
-        nmpc.velocity = nmpc.NMPController(nmpc.iRobot, traj);
-        
-
-        geometry_msgs::Twist msg;
-        msg.linear.x = nmpc.velocity.v_out;
-        msg.angular.z = nmpc.velocity.w_out;
-
-        cout << "Querendo ir para X = " << traj.x_ref << ", Y = " << traj.y_ref << endl;
         cout << "iRobot.x = " << nmpc.iRobot.x_rob << ", iRobot.y = " << nmpc.iRobot.y_rob << endl;
-        cout << "velo.linear.x = " << msg.linear.x << ", velo.angular.z = " << msg.angular.z << endl;
-        
-        velPub.publish(msg);
-
+        cout << "flecha = " << nmpc.cloud.x << endl;
         loop_rate1.sleep();
                 
 
-        cout << endl;
+         cout << endl;
     }
+
+    // for(int i = 0; i < xref.size(); i++) {
+    //     spinOnce();
+    //     cout << endl;
+
+    //     cout << i << endl;
+    //     traj.x_ref = xref[i];
+    //     traj.y_ref = yref[i];
+    //     traj.vx_ref = Vx[i];
+    //     traj.vy_ref = Vy[i];
+
+    //     VW = CalcTetaVW(Vx[i], acelX[i], Vy[i], acelY[i]);
+
+    //     traj.v_ref = VW[0];
+    //     traj.w_ref = VW[1];
+
+    //     nmpc.velocity = nmpc.NMPController(nmpc.iRobot, traj);
+        
+
+    //     geometry_msgs::Twist msg;
+    //     msg.linear.x = nmpc.velocity.v_out;
+    //     msg.angular.z = nmpc.velocity.w_out;
+
+    //     cout << "Querendo ir para X = " << traj.x_ref << ", Y = " << traj.y_ref << endl;
+    //     cout << "iRobot.x = " << nmpc.iRobot.x_rob << ", iRobot.y = " << nmpc.iRobot.y_rob << endl;
+    //     cout << "velo.linear.x = " << msg.linear.x << ", velo.angular.z = " << msg.angular.z << endl;
+        
+    //     velPub.publish(msg);
+
+    //     loop_rate1.sleep();
+                
+
+    //     cout << endl;
+    // }
     
 
 

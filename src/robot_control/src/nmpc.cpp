@@ -233,6 +233,14 @@ void NMPC::OdomCallback(const nav_msgs::Odometry::ConstPtr& vel){
 
 }
 
+void NMPC::CloudCallback(const geometry_msgs::PoseArray& pose){
+
+    cloud.x = pose.poses[0].position.x;
+    
+    
+
+}
+
 double NMPC::CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d& Ut){
 
     double sum_cost;
