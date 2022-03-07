@@ -3,6 +3,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/PoseArray.h>
 //#include "sensor_msgs/Image.h"
 //#include "sensor_msgs/PointCloud2.h"
 //#include "sensor_msgs/LaserScan.h"
@@ -47,6 +48,7 @@ class NMPC{
         NodeHandle node_;
         Subscriber ekf_estim;
         Subscriber Rob_vel;
+        Subscriber cloud_pose;
 
         NMPC(){
             //subscreve valores do EKF
@@ -54,6 +56,7 @@ class NMPC{
 
             //subscreve valores de velocidade do robo
             Rob_vel = node_.subscribe("/odom", 1, &NMPC::OdomCallback, this);
+            cloud_pose = node_.subscribe("/particlecloud", 1, &NMPC::CloudCallback, this);
             
             //vision = node_.subscribe("/camera/rgb/image_raw",10, &NMPC::ImageCallback,this);
         }
@@ -61,10 +64,12 @@ class NMPC{
 
         Vout velocity;    
         MyRobot iRobot;
+        MyCloud cloud;
 
         Vout NMPController(MyRobot iRobot, Trajectory Traj);
          
         void OdomCallback(const nav_msgs::Odometry::ConstPtr& vel);
+        void CloudCallback(const geometry_msgs::PoseArray& pose);
 
         //void VelCallback(const nav_msgs::Odometry::ConstPtr& vel);
         double CostFunction(TRobotStateSim Robot, TTargetStateSim Target, Matrix2d& Ut);
