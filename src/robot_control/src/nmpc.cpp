@@ -235,7 +235,15 @@ void NMPC::OdomCallback(const nav_msgs::Odometry::ConstPtr& vel){
 
 void NMPC::CloudCallback(const geometry_msgs::PoseArray& pose){
 
-    cloud.x = pose.poses[0].position.x;
+    int size = pose.poses.size();
+    
+    for(int i = 0; i < size; i++){
+        cloud.x += pose.poses[i].position.x;
+        cloud.y += pose.poses[i].position.y;        
+    }
+    
+    cloud.x = cloud.x/size;
+    cloud.y = cloud.y/size;
     
     
 

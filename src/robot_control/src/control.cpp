@@ -87,7 +87,7 @@ int main(int argc, char** argv){
     while(ros::ok){
         spinOnce();
         cout << "iRobot.x = " << nmpc.iRobot.x_rob << ", iRobot.y = " << nmpc.iRobot.y_rob << endl;
-        cout << "flecha = " << nmpc.cloud.x << endl;
+        cout << "amcl.x = " << nmpc.cloud.x + 4.52 << ", amcl.y = " << nmpc.cloud.y + 2.37 << endl;
         loop_rate1.sleep();
                 
 
