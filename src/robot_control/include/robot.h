@@ -47,8 +47,9 @@ class MyRobot{
 
 class MyCloud{
     public:
-        MyCloud(): x(0) {}
+        MyCloud(): x(0), y(0) {}
         double x;
+        double y;
 };
 
 #endif
